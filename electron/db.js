@@ -76,32 +76,52 @@ function listWebsites(search = "") {
 }
 
 function createWebsite(payload) {
-  const nextSort = db.prepare("SELECT COALESCE(MAX(sort_index), -1) + 1 AS next_sort FROM website").get().next_sort;
   const timestamp = nowIso();
-  const info = db
-    .prepare(
-      `
-      INSERT INTO website (name, url, category, notes, sort_index, is_enabled, created_at, updated_at, last_visited_at)
-      VALUES (@name, @url, @category, @notes, @sort_index, @is_enabled, @created_at, @updated_at, NULL)
-    `
-    )
-    .run({
+  const total = db.prepare("SELECT COUNT(1) AS total FROM website").get().total;
+  const requestedIndexRaw = payload.sort_index;
+  const hasRequestedIndex = requestedIndexRaw !== undefined && requestedIndexRaw !== null && requestedIndexRaw !== "";
+  const requestedIndex = hasRequestedIndex ? Number(requestedIndexRaw) : total;
+  const sortIndex = Number.isFinite(requestedIndex) ? Math.max(0, Math.min(total, Math.floor(requestedIndex))) : total;
+
+  const shift = db.prepare("UPDATE website SET sort_index = sort_index + 1, updated_at = ? WHERE sort_index >= ?");
+  const insert = db.prepare(`
+    INSERT INTO website (name, url, category, notes, sort_index, is_enabled, created_at, updated_at, last_visited_at)
+    VALUES (@name, @url, @category, @notes, @sort_index, @is_enabled, @created_at, @updated_at, NULL)
+  `);
+
+  const run = db.transaction(() => {
+    shift.run(timestamp, sortIndex);
+    const info = insert.run({
       name: payload.name.trim(),
       url: payload.url.trim(),
       category: (payload.category || "").trim(),
       notes: (payload.notes || "").trim(),
-      sort_index: nextSort,
+      sort_index: sortIndex,
       is_enabled: payload.is_enabled ? 1 : 0,
       created_at: timestamp,
       updated_at: timestamp
     });
-  return getWebsiteById(info.lastInsertRowid);
+    return info.lastInsertRowid;
+  });
+
+  const id = run();
+  return getWebsiteById(id);
 }
 
 function updateWebsite(payload) {
   const timestamp = nowIso();
-  db.prepare(
-    `
+  const existing = getWebsiteById(payload.id);
+  if (!existing) return null;
+
+  const requestedIndexRaw = payload.sort_index;
+  const hasRequestedIndex = requestedIndexRaw !== undefined && requestedIndexRaw !== null && requestedIndexRaw !== "";
+  const requestedIndex = hasRequestedIndex ? Number(requestedIndexRaw) : existing.sort_index;
+  const total = db.prepare("SELECT COUNT(1) AS total FROM website").get().total;
+  const nextIndex = Number.isFinite(requestedIndex)
+    ? Math.max(0, Math.min(total - 1, Math.floor(requestedIndex)))
+    : existing.sort_index;
+
+  const updateCore = db.prepare(`
     UPDATE website
     SET name = @name,
         url = @url,
@@ -110,16 +130,34 @@ function updateWebsite(payload) {
         is_enabled = @is_enabled,
         updated_at = @updated_at
     WHERE id = @id
-  `
-  ).run({
-    id: payload.id,
-    name: payload.name.trim(),
-    url: payload.url.trim(),
-    category: (payload.category || "").trim(),
-    notes: (payload.notes || "").trim(),
-    is_enabled: payload.is_enabled ? 1 : 0,
-    updated_at: timestamp
+  `);
+
+  const run = db.transaction(() => {
+    if (nextIndex !== existing.sort_index) {
+      if (nextIndex > existing.sort_index) {
+        db.prepare(
+          "UPDATE website SET sort_index = sort_index - 1, updated_at = ? WHERE sort_index > ? AND sort_index <= ?"
+        ).run(timestamp, existing.sort_index, nextIndex);
+      } else {
+        db.prepare(
+          "UPDATE website SET sort_index = sort_index + 1, updated_at = ? WHERE sort_index >= ? AND sort_index < ?"
+        ).run(timestamp, nextIndex, existing.sort_index);
+      }
+      db.prepare("UPDATE website SET sort_index = ?, updated_at = ? WHERE id = ?").run(nextIndex, timestamp, payload.id);
+    }
+
+    updateCore.run({
+      id: payload.id,
+      name: payload.name.trim(),
+      url: payload.url.trim(),
+      category: (payload.category || "").trim(),
+      notes: (payload.notes || "").trim(),
+      is_enabled: payload.is_enabled ? 1 : 0,
+      updated_at: timestamp
+    });
   });
+
+  run();
   return getWebsiteById(payload.id);
 }
 

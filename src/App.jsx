@@ -1,17 +1,28 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import navCollapseIcon from "./assets/KHCFDC_导航收起.png";
+import navExpandIcon from "./assets/KHCFDC_导航展开.png";
+import iconBack from "./assets/icon-back.svg";
+import iconForward from "./assets/icon-forward.svg";
+import iconRefresh from "./assets/icon-refresh.svg";
+import iconZoomOut from "./assets/icon-zoom-out.svg";
+import iconZoomIn from "./assets/icon-zoom-in.svg";
+import iconExternal from "./assets/icon-external.svg";
 
 const EMPTY_FORM = {
   name: "",
   url: "",
   category: "",
   notes: "",
+  sort_index: "",
   is_enabled: true
 };
+
+const CATEGORY_OPTIONS = ["大厂", "中厂", "独角兽", "小厂"];
 
 function App() {
   const [websites, setWebsites] = useState([]);
   const [activePage, setActivePage] = useState("viewer");
-  const [navOpen, setNavOpen] = useState(true);
+  const [navOpen, setNavOpen] = useState(false);
   const [siteSearch, setSiteSearch] = useState("");
   const [selectedOneId, setSelectedOneId] = useState(null);
   const [selectedTwoId, setSelectedTwoId] = useState(null);
@@ -20,6 +31,20 @@ function App() {
   const [form, setForm] = useState(EMPTY_FORM);
   const [editingId, setEditingId] = useState(null);
   const [draggingId, setDraggingId] = useState(null);
+  const virtualListRef = useRef(null);
+  const virtualLockRef = useRef(false);
+  const scrollDebounceRef = useRef(null);
+
+  const [navHover, setNavHover] = useState(false);
+  const [navPos, setNavPos] = useState(() => {
+    try {
+      const raw = localStorage.getItem("navPos");
+      if (raw) return JSON.parse(raw);
+    } catch {}
+    return { x: 10, y: 10 };
+  });
+  const draggingNavRef = useRef(false);
+  const navDragOffsetRef = useRef({ x: 0, y: 0 });
 
   const enabledSites = useMemo(() => websites.filter((site) => site.is_enabled === 1), [websites]);
   const navSites = useMemo(() => {
@@ -56,6 +81,28 @@ function App() {
   const selectedTwo =
     enabledSites.find((site) => site.id === selectedTwoId && site.id !== selectedOne?.id) ||
     enabledSites.find((site) => site.id !== selectedOne?.id);
+
+  const selectedOneIndex = useMemo(
+    () => enabledSites.findIndex((site) => site.id === selectedOne?.id),
+    [enabledSites, selectedOne?.id]
+  );
+  const virtualSites = useMemo(() => {
+    if (!enabledSites.length) return [];
+    const current = selectedOneIndex >= 0 ? selectedOneIndex : 0;
+    const ids = [];
+    for (let offset = -2; offset <= 2; offset += 1) {
+      const idx = current + offset;
+      if (idx >= 0 && idx < enabledSites.length) {
+        ids.push(enabledSites[idx]);
+      }
+    }
+    return ids;
+  }, [enabledSites, selectedOneIndex]);
+  const virtualSelectedIndex = useMemo(() => {
+    if (!selectedOne?.id) return 0;
+    const idx = virtualSites.findIndex((s) => s.id === selectedOne.id);
+    return idx >= 0 ? idx : 0;
+  }, [virtualSites, selectedOne?.id]);
 
   async function reload(search = "") {
     const list = await window.api.listWebsites(search);
@@ -134,10 +181,60 @@ function App() {
       url: site.url,
       category: site.category || "",
       notes: site.notes || "",
+      sort_index: site.sort_index,
       is_enabled: site.is_enabled === 1
     });
     setEditingId(site.id);
   }
+
+  function gotoRelative(delta) {
+    if (!enabledSites.length) return;
+    const current = selectedOneIndex >= 0 ? selectedOneIndex : 0;
+    const nextIndex = Math.max(0, Math.min(enabledSites.length - 1, current + delta));
+    const next = enabledSites[nextIndex];
+    if (next?.id) {
+      setSelectedOneId(next.id);
+    }
+  }
+
+  function recenterVirtualList() {
+    const el = virtualListRef.current;
+    if (!el) return;
+    const itemHeight = el.clientHeight;
+    if (!itemHeight) return;
+    el.scrollTo({ top: virtualSelectedIndex * itemHeight, behavior: "auto" });
+  }
+
+  useEffect(() => {
+    if (layout !== "single") return;
+    if (!virtualSites.length) return;
+    recenterVirtualList();
+  }, [layout, selectedOne?.id, virtualSites.length, virtualSelectedIndex]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("navPos", JSON.stringify(navPos));
+    } catch {}
+  }, [navPos]);
+
+  useEffect(() => {
+    function onMove(event) {
+      if (!draggingNavRef.current) return;
+      setNavPos((old) => ({
+        x: Math.max(6, event.clientX - navDragOffsetRef.current.x),
+        y: Math.max(6, event.clientY - navDragOffsetRef.current.y)
+      }));
+    }
+    function onUp() {
+      draggingNavRef.current = false;
+    }
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseup", onUp);
+    };
+  }, []);
 
   return (
     <div className="app">
@@ -155,9 +252,23 @@ function App() {
 
       {activePage === "viewer" ? (
         <div className="viewer-layout">
-          <aside className={`sidebar ${navOpen ? "open" : "closed"}`}>
-            <div className="sidebar-header">
-              <button onClick={() => setNavOpen((v) => !v)}>{navOpen ? "收起" : "展开"}</button>
+          <aside
+            className={`sidebar floating ${navOpen ? "open" : "closed"} ${!navHover && !navOpen ? "inactive" : ""}`}
+            style={{ left: navPos.x, top: navPos.y }}
+            onMouseEnter={() => setNavHover(true)}
+            onMouseLeave={() => setNavHover(false)}
+          >
+            <div
+              className="sidebar-header"
+              onMouseDown={(event) => {
+                if (event.target?.closest?.("button")) return;
+                draggingNavRef.current = true;
+                navDragOffsetRef.current = { x: event.clientX - navPos.x, y: event.clientY - navPos.y };
+              }}
+            >
+              <button className="icon-button" onClick={() => setNavOpen((v) => !v)} title={navOpen ? "收起导航" : "展开导航"}>
+                <img alt={navOpen ? "收起" : "展开"} src={navOpen ? navCollapseIcon : navExpandIcon} />
+              </button>
             </div>
             {navOpen && (
               <>
@@ -194,6 +305,10 @@ function App() {
               <button className={layout === "double" ? "active" : ""} onClick={() => setLayout("double")}>
                 双列
               </button>
+              <div className="viewer-nav-buttons">
+                <button onClick={() => gotoRelative(-1)}>上一站</button>
+                <button onClick={() => gotoRelative(1)}>下一站</button>
+              </div>
               {layout === "double" && (
                 <select value={selectedTwo?.id || ""} onChange={(event) => setSelectedTwoId(Number(event.target.value))}>
                   {enabledSites
@@ -207,14 +322,50 @@ function App() {
               )}
             </div>
 
-            <div className={`webview-grid ${layout}`}>
-              {selectedOne ? (
-                <WebPane site={selectedOne} />
-              ) : (
-                <div className="empty">暂无可展示网站，请先在管理页新增或启用网站。</div>
-              )}
-              {layout === "double" && selectedTwo ? <WebPane site={selectedTwo} /> : null}
-            </div>
+            {layout === "single" ? (
+              <div
+                ref={virtualListRef}
+                className="webview-virtual"
+                onScroll={() => {
+                  const el = virtualListRef.current;
+                  if (!el) return;
+                  if (virtualLockRef.current) return;
+                  if (scrollDebounceRef.current) {
+                    clearTimeout(scrollDebounceRef.current);
+                  }
+                  scrollDebounceRef.current = setTimeout(() => {
+                    const itemHeight = el.clientHeight;
+                    if (!itemHeight) return;
+                    const rawIndex = el.scrollTop / itemHeight;
+                    const nearest = Math.round(rawIndex);
+                    if (nearest === virtualSelectedIndex) return;
+
+                    virtualLockRef.current = true;
+                    if (nearest < virtualSelectedIndex) gotoRelative(-1);
+                    else gotoRelative(1);
+                    requestAnimationFrame(() => {
+                      recenterVirtualList();
+                      virtualLockRef.current = false;
+                    });
+                  }, 170);
+                }}
+              >
+                {selectedOne ? (
+                  virtualSites.map((site) => <WebPane key={site.id} site={site} />)
+                ) : (
+                  <div className="empty">暂无可展示网站，请先在管理页新增或启用网站。</div>
+                )}
+              </div>
+            ) : (
+              <div className={`webview-grid ${layout}`}>
+                {selectedOne ? (
+                  <WebPane site={selectedOne} />
+                ) : (
+                  <div className="empty">暂无可展示网站，请先在管理页新增或启用网站。</div>
+                )}
+                {layout === "double" && selectedTwo ? <WebPane site={selectedTwo} /> : null}
+              </div>
+            )}
           </main>
         </div>
       ) : (
@@ -222,6 +373,19 @@ function App() {
           <section className="form-card">
             <h2>{editingId ? "编辑网站" : "新增网站"}</h2>
             <form onSubmit={submitForm}>
+              <div className="form-row">
+                <label>顺序（从 1 开始）</label>
+                <input
+                  type="number"
+                  min="1"
+                  placeholder="例如：1"
+                  value={form.sort_index === "" ? "" : Number(form.sort_index) + 1}
+                  onChange={(event) => {
+                    const v = event.target.value;
+                    setForm((old) => ({ ...old, sort_index: v === "" ? "" : Math.max(0, Number(v) - 1) }));
+                  }}
+                />
+              </div>
               <input
                 placeholder="网站名称"
                 value={form.name}
@@ -232,11 +396,20 @@ function App() {
                 value={form.url}
                 onChange={(event) => setForm((old) => ({ ...old, url: event.target.value }))}
               />
-              <input
-                placeholder="分类（可选）"
-                value={form.category}
-                onChange={(event) => setForm((old) => ({ ...old, category: event.target.value }))}
-              />
+              <div className="form-row">
+                <label>分类</label>
+                <select
+                  value={form.category}
+                  onChange={(event) => setForm((old) => ({ ...old, category: event.target.value }))}
+                >
+                  <option value="">未分组</option>
+                  {CATEGORY_OPTIONS.map((c) => (
+                    <option key={c} value={c}>
+                      {c}
+                    </option>
+                  ))}
+                </select>
+              </div>
               <input
                 placeholder="备注（可选）"
                 value={form.notes}
@@ -325,10 +498,138 @@ function App() {
 }
 
 function WebPane({ site }) {
+  const webviewRef = useRef(null);
+  const [currentUrl, setCurrentUrl] = useState(site.url);
+  const [inputUrl, setInputUrl] = useState(site.url);
+  const [canBack, setCanBack] = useState(false);
+  const [canForward, setCanForward] = useState(false);
+  const [zoom, setZoom] = useState(1);
+  const [loading, setLoading] = useState(false);
+
+  function syncNav() {
+    const wv = webviewRef.current;
+    if (!wv) return;
+    try {
+      setCurrentUrl(wv.getURL());
+      setInputUrl(wv.getURL());
+      setCanBack(wv.canGoBack());
+      setCanForward(wv.canGoForward());
+    } catch {}
+  }
+
+  useEffect(() => {
+    setCurrentUrl(site.url);
+    setInputUrl(site.url);
+  }, [site.id, site.url]);
+
+  useEffect(() => {
+    const wv = webviewRef.current;
+    if (!wv) return;
+
+    const onStart = () => setLoading(true);
+    const onStop = () => setLoading(false);
+    const onNav = () => syncNav();
+
+    wv.addEventListener("did-start-loading", onStart);
+    wv.addEventListener("did-stop-loading", onStop);
+    wv.addEventListener("did-navigate", onNav);
+    wv.addEventListener("did-navigate-in-page", onNav);
+    wv.addEventListener("dom-ready", () => {
+      try {
+        wv.setZoomFactor(zoom);
+      } catch {}
+      syncNav();
+    });
+
+    return () => {
+      wv.removeEventListener("did-start-loading", onStart);
+      wv.removeEventListener("did-stop-loading", onStop);
+      wv.removeEventListener("did-navigate", onNav);
+      wv.removeEventListener("did-navigate-in-page", onNav);
+    };
+  }, [zoom]);
+
+  function normalizeUrl(raw) {
+    const trimmed = String(raw || "").trim();
+    if (!trimmed) return "";
+    if (/^https?:\/\//i.test(trimmed)) return trimmed;
+    return `https://${trimmed}`;
+  }
+
+  function go() {
+    const wv = webviewRef.current;
+    if (!wv) return;
+    const next = normalizeUrl(inputUrl);
+    if (!next) return;
+    try {
+      wv.loadURL(next);
+    } catch {}
+  }
+
+  function adjustZoom(delta) {
+    const wv = webviewRef.current;
+    if (!wv) return;
+    const next = Math.max(0.5, Math.min(2.0, Math.round((zoom + delta) * 10) / 10));
+    setZoom(next);
+    try {
+      wv.setZoomFactor(next);
+    } catch {}
+  }
+
   return (
     <div className="web-pane">
-      <div className="pane-title">{site.name}</div>
-      <webview src={site.url} partition={`persist:site-${site.id}`} allowpopups="true" />
+      <div className="pane-title">
+        <div className="pane-title-left">
+          <span className={`status-dot ${loading ? "loading" : "idle"}`} />
+          <span className="pane-name">{site.name}</span>
+          <span className="zoom-indicator">{Math.round(zoom * 100)}%</span>
+        </div>
+        <div className="pane-actions">
+          <button className="icon-button" disabled={!canBack} onClick={() => webviewRef.current?.goBack()} title="后退">
+            <img alt="后退" src={iconBack} />
+          </button>
+          <button
+            className="icon-button"
+            disabled={!canForward}
+            onClick={() => webviewRef.current?.goForward()}
+            title="前进"
+          >
+            <img alt="前进" src={iconForward} />
+          </button>
+          <button className="icon-button" onClick={() => webviewRef.current?.reload()} title="刷新">
+            <img alt="刷新" src={iconRefresh} />
+          </button>
+          <button className="icon-button" onClick={() => adjustZoom(-0.1)} title="缩小">
+            <img alt="缩小" src={iconZoomOut} />
+          </button>
+          <button className="icon-button" onClick={() => adjustZoom(0.1)} title="放大">
+            <img alt="放大" src={iconZoomIn} />
+          </button>
+          <button
+            className="icon-button"
+            onClick={() => window.api.openExternal(currentUrl || site.url)}
+            title="浏览器打开"
+          >
+            <img alt="浏览器打开" src={iconExternal} />
+          </button>
+        </div>
+      </div>
+
+      <div className="address-row">
+        <input
+          className="address-input"
+          value={inputUrl}
+          onChange={(e) => setInputUrl(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") go();
+          }}
+        />
+        <button className="primary" onClick={go}>
+          访问
+        </button>
+      </div>
+
+      <webview ref={webviewRef} src={site.url} partition={`persist:site-${site.id}`} allowpopups="true" />
     </div>
   );
 }

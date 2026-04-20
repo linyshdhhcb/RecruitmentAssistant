@@ -1,6 +1,6 @@
 const path = require("node:path");
 const fs = require("node:fs");
-const { app, BrowserWindow, ipcMain, dialog } = require("electron");
+const { app, BrowserWindow, ipcMain, dialog, shell } = require("electron");
 const db = require("./db");
 
 const isDev = !!process.env.VITE_DEV_SERVER_URL;
@@ -64,6 +64,14 @@ function registerIpc() {
     const list = Array.isArray(payload) ? payload : [];
     const next = db.replaceAllWebsites(list);
     return { canceled: false, total: next.length };
+  });
+
+  ipcMain.handle("system:openExternal", async (_, url) => {
+    if (typeof url !== "string") return false;
+    const trimmed = url.trim();
+    if (!/^https?:\/\//i.test(trimmed)) return false;
+    await shell.openExternal(trimmed);
+    return true;
   });
 }
 

@@ -8,5 +8,6 @@ contextBridge.exposeInMainWorld("api", {
   reorderWebsites: (ids) => ipcRenderer.invoke("websites:reorder", ids),
   touchVisited: (id) => ipcRenderer.invoke("websites:touchVisited", id),
   exportWebsites: () => ipcRenderer.invoke("websites:export"),
-  importWebsites: () => ipcRenderer.invoke("websites:import")
+  importWebsites: () => ipcRenderer.invoke("websites:import"),
+  openExternal: (url) => ipcRenderer.invoke("system:openExternal", url)
 });
