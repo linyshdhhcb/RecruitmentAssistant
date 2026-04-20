@@ -21,17 +21,18 @@
 
 ## 技术栈
 
-- Electron
+- Electron（当前固定为 `28.3.3`，确保 `better-sqlite3` 免本地编译）
 - React
 - Vite
-- SQLite (`better-sqlite3`)
+- SQLite (`better-sqlite3@9.6.0`)
 
 ## 快速开始
 
 ## 环境要求
 
-- Node.js 18+
-- npm 9+
+- Node.js 20.x（推荐 `20.18.1`）
+- npm 10+
+- Windows PowerShell（用于一键修复脚本）
 
 ## 安装依赖
 
@@ -43,6 +44,26 @@ npm install
 
 ```bash
 npm run dev
+```
+
+## 一键修复（推荐）
+
+当你遇到 `npm install` 卡住、`Electron failed to install correctly`、`better-sqlite3 NODE_MODULE_VERSION` 不匹配、`5173` 端口占用时，优先执行：
+
+```bash
+npm run fix:dev-env
+```
+
+修复后再启动：
+
+```bash
+npm run dev
+```
+
+如果希望修复后自动启动开发环境：
+
+```bash
+npm run fix:dev-env:run
 ```
 
 ## 构建前端资源
@@ -86,6 +107,33 @@ RecruitmentAssistant/
 - `sort_index`：排序值
 - `is_enabled`：启用状态
 - `created_at` / `updated_at` / `last_visited_at`：时间字段
+
+## 常见问题排查
+
+### 1) `npm install` 一直卡住
+
+- 不要在 Electron 下载阶段频繁 `Ctrl + C`。
+- 先执行 `npm run fix:dev-env`，脚本会自动重建依赖并修复常见锁问题。
+
+### 2) `Electron failed to install correctly`
+
+- 说明 `node_modules/electron` 不完整或损坏。
+- 执行 `npm run fix:dev-env` 可自动 `npm rebuild electron`。
+
+### 3) `better-sqlite3 ... NODE_MODULE_VERSION ...`
+
+- 说明原生模块 ABI 与 Electron 版本不一致。
+- 脚本会固定 Electron 到兼容版本并重建 `better-sqlite3`。
+
+### 4) `Port 5173 is already in use`
+
+- 脚本会自动释放占用 `5173` 的进程。
+- 也可以手动执行：
+
+```bash
+netstat -ano | findstr :5173
+taskkill /PID <PID> /F
+```
 
 ## 作者信息
 
