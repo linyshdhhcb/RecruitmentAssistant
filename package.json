@@ -1,0 +1,34 @@
+{
+  "name": "recruitmentassistant",
+  "version": "1.0.0",
+  "description": "Desktop recruitment website aggregator built with Electron + React + SQLite.",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev:renderer": "vite",
+    "dev:electron": "wait-on tcp:5173 && cross-env VITE_DEV_SERVER_URL=http://localhost:5173 electron .",
+    "dev": "concurrently -k \"npm:dev:renderer\" \"npm:dev:electron\"",
+    "build:renderer": "vite build",
+    "start": "electron ."
+  },
+  "keywords": [
+    "electron",
+    "react",
+    "sqlite",
+    "recruitment"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^12.9.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.7.0",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
+    "electron": "^41.2.1",
+    "vite": "^6.4.2",
+    "wait-on": "^9.0.5"
+  }
+}
