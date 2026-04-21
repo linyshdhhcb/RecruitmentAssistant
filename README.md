@@ -19,6 +19,14 @@
   - 导出 JSON
   - 导入 JSON（覆盖恢复）
 
+## 运行截图
+<img src="./imgs/1.png" width="800">
+<img src="./imgs/2.png" width="800">
+<img src="./imgs/3.png" width="800">
+<img src="./imgs/4.png" width="800">
+<img src="./imgs/5.png" width="800">
+
+
 ## 技术栈
 
 - Electron（当前固定为 `28.3.3`，确保 `better-sqlite3` 免本地编译）
