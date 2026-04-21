@@ -2,9 +2,9 @@
   color-scheme: dark;
   font-family: "Segoe UI", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
 
-  --bg-1: #08111f;
-  --bg-2: #0f172a;
-  --bg-3: #0b1220;
+  --bg-1: #0b1f3d;
+  --bg-2: #102a52;
+  --bg-3: #0f2345;
 
   --text-1: #e2e8f0;
   --text-2: #94a3b8;
@@ -14,13 +14,13 @@
   --accent-2: #38bdf8;
 
   --hover: rgba(30, 41, 59, 0.96);
-  --card: rgba(8, 15, 30, 0.78);
+  --card: rgba(12, 30, 62, 0.84);
   --border: rgba(148, 163, 184, 0.16);
   --shadow: rgba(2, 6, 23, 0.34);
 
   --active-gradient: linear-gradient(135deg, rgba(8, 47, 73, 0.9), rgba(15, 118, 110, 0.7));
-  --glow-left: rgba(36, 99, 235, 0.28);
-  --glow-right: rgba(8, 145, 178, 0.2);
+  --glow-left: rgba(56, 189, 248, 0.35);
+  --glow-right: rgba(14, 165, 233, 0.28);
 }
 
 * {
@@ -95,7 +95,7 @@ body::after {
 button {
   border: 1px solid var(--border);
   border-radius: 10px;
-  background: rgba(8, 15, 30, 0.55);
+  background: rgba(14, 37, 74, 0.72);
   color: var(--text-1);
   padding: 8px 12px;
   cursor: pointer;
@@ -105,7 +105,7 @@ button {
 }
 
 button:hover {
-  background: var(--hover);
+  background: rgba(30, 64, 122, 0.95);
   border-color: rgba(56, 189, 248, 0.35);
 }
 
@@ -236,7 +236,7 @@ button:disabled {
   margin-bottom: 8px;
   border-radius: 12px;
   padding: 10px 12px;
-  background: rgba(8, 15, 30, 0.32);
+  background: rgba(22, 53, 99, 0.42);
   box-shadow: none;
 }
 
@@ -300,6 +300,29 @@ button:disabled {
   box-shadow: 0 18px 40px rgba(2, 6, 23, 0.5);
 }
 
+.web-pane.preview {
+  justify-content: flex-start;
+}
+
+.preview-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  padding: 20px;
+  color: var(--text-2);
+}
+
+.preview-url {
+  max-width: 100%;
+  text-align: center;
+  color: var(--link);
+  word-break: break-all;
+}
+
 .webview-virtual {
   flex: 1;
   min-height: 0;
@@ -323,7 +346,7 @@ button:disabled {
   justify-content: space-between;
   padding: 10px 12px;
   border-bottom: 1px solid var(--border);
-  background: rgba(8, 15, 30, 0.62);
+  background: rgba(16, 45, 92, 0.82);
 }
 
 .pane-title-left {
@@ -383,7 +406,7 @@ button:disabled {
   gap: 10px;
   padding: 10px 12px;
   border-bottom: 1px solid var(--border);
-  background: rgba(8, 15, 30, 0.52);
+  background: rgba(14, 39, 81, 0.74);
 }
 
 .address-input {
@@ -516,6 +539,7 @@ td {
   border-bottom: 1px solid rgba(148, 163, 184, 0.12);
   padding: 10px 8px;
   text-align: left;
+  color: var(--text-1);
 }
 
 thead th {
@@ -534,7 +558,7 @@ tbody tr[draggable="true"]:hover {
 .url-cell {
   max-width: 340px;
   word-break: break-all;
-  color: rgba(226, 232, 240, 0.88);
+  color: #dbeafe;
 }
 
 .op-buttons {
@@ -551,4 +575,18 @@ tbody tr[draggable="true"]:hover {
   margin-top: 10px;
   color: var(--text-2);
   font-size: 12px;
+}
+
+.pager {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-2);
+  font-size: 12px;
+}
+
+.pager-actions {
+  display: flex;
+  gap: 8px;
 }

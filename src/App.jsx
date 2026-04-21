@@ -28,6 +28,8 @@ function App() {
   const [selectedTwoId, setSelectedTwoId] = useState(null);
   const [layout, setLayout] = useState("single");
   const [manageSearch, setManageSearch] = useState("");
+  const [managePage, setManagePage] = useState(1);
+  const [managePageSize] = useState(25);
   const [form, setForm] = useState(EMPTY_FORM);
   const [editingId, setEditingId] = useState(null);
   const [draggingId, setDraggingId] = useState(null);
@@ -76,6 +78,12 @@ function App() {
         (site.notes || "").toLowerCase().includes(key)
     );
   }, [websites, manageSearch]);
+  const manageTotalPages = Math.max(1, Math.ceil(manageSites.length / managePageSize));
+  const pagedManageSites = useMemo(() => {
+    const safePage = Math.max(1, Math.min(managePage, manageTotalPages));
+    const start = (safePage - 1) * managePageSize;
+    return manageSites.slice(start, start + managePageSize);
+  }, [managePage, managePageSize, manageSites, manageTotalPages]);
 
   const selectedOne = enabledSites.find((site) => site.id === selectedOneId) || enabledSites[0];
   const selectedTwo =
@@ -115,6 +123,16 @@ function App() {
   useEffect(() => {
     reload();
   }, []);
+
+  useEffect(() => {
+    setManagePage(1);
+  }, [manageSearch]);
+
+  useEffect(() => {
+    if (managePage > manageTotalPages) {
+      setManagePage(manageTotalPages);
+    }
+  }, [managePage, manageTotalPages]);
 
   useEffect(() => {
     if (selectedOne?.id) {
@@ -351,7 +369,13 @@ function App() {
                 }}
               >
                 {selectedOne ? (
-                  virtualSites.map((site) => <WebPane key={site.id} site={site} />)
+                  virtualSites.map((site) =>
+                    site.id === selectedOne?.id ? (
+                      <WebPane key={site.id} site={site} />
+                    ) : (
+                      <WebPanePreview key={site.id} site={site} onActivate={() => setSelectedOneId(site.id)} />
+                    )
+                  )
                 ) : (
                   <div className="empty">暂无可展示网站，请先在管理页新增或启用网站。</div>
                 )}
@@ -460,7 +484,7 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                {manageSites.map((site) => (
+                {pagedManageSites.map((site) => (
                   <tr
                     key={site.id}
                     draggable={!manageSearch.trim()}
@@ -489,6 +513,22 @@ function App() {
                 ))}
               </tbody>
             </table>
+            <div className="pager">
+              <span>
+                共 {manageSites.length} 条 / 第 {managePage} 页 / 共 {manageTotalPages} 页
+              </span>
+              <div className="pager-actions">
+                <button disabled={managePage <= 1} onClick={() => setManagePage((p) => Math.max(1, p - 1))}>
+                  上一页
+                </button>
+                <button
+                  disabled={managePage >= manageTotalPages}
+                  onClick={() => setManagePage((p) => Math.min(manageTotalPages, p + 1))}
+                >
+                  下一页
+                </button>
+              </div>
+            </div>
             {manageSearch.trim() ? <div className="hint">搜索过滤中，已禁用拖拽排序。清空搜索后可拖拽行调整顺序。</div> : null}
           </section>
         </div>
@@ -630,6 +670,25 @@ function WebPane({ site }) {
       </div>
 
       <webview ref={webviewRef} src={site.url} partition={`persist:site-${site.id}`} allowpopups="true" />
+    </div>
+  );
+}
+
+function WebPanePreview({ site, onActivate }) {
+  return (
+    <div className="web-pane preview">
+      <div className="pane-title">
+        <div className="pane-title-left">
+          <span className="status-dot idle" />
+          <span className="pane-name">{site.name}</span>
+        </div>
+      </div>
+      <div className="preview-body">
+        <div className="preview-url">{site.url}</div>
+        <button className="primary" onClick={onActivate}>
+          切换到此网站
+        </button>
+      </div>
     </div>
   );
 }
