@@ -2,7 +2,21 @@ const fs = require("node:fs");
 const path = require("node:path");
 const Database = require("better-sqlite3");
 
-const dbPath = path.join(__dirname, "..", "data.sqlite");
+function resolveDbPath() {
+  try {
+    // In production, db must live in a writable user directory.
+    // `require("electron")` works in main process; in dev it is still available when this module is required by `electron/main.js`.
+    // If it isn't available (e.g. plain node context), fall back to project root.
+    // eslint-disable-next-line global-require
+    const { app } = require("electron");
+    if (app?.getPath) {
+      return path.join(app.getPath("userData"), "data.sqlite");
+    }
+  } catch {}
+  return path.join(__dirname, "..", "data.sqlite");
+}
+
+const dbPath = resolveDbPath();
 const sourceJsonPath = path.join(__dirname, "..", "企业招聘官网.json");
 
 const db = new Database(dbPath);
