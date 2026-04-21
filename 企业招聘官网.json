@@ -1,0 +1,642 @@
+[
+  {
+    "id": 1,
+    "name": "网易社会招聘",
+    "url": "https://hr.163.com/job-list.html?workType=1"
+  },
+  {
+    "id": 2,
+    "name": "美团校园招聘",
+    "url": "https://zhaopin.meituan.com/web/campus"
+  },
+  {
+    "id": 3,
+    "name": "百度校园招聘",
+    "url": "https://talent.baidu.com/jobs/list"
+  },
+  {
+    "id": 4,
+    "name": "字节跳动应聘记录",
+    "url": "https://jobs.bytedance.com/referral/campus/pc/position/application?token=MTsxNzc0MzM2NDg0OTE3Ozc2MTMyMTIwOTg1MzEwMzQ2Mjk7NzU5MjEzNzIxMDQ5NDE3NTQ5Mzsx"
+  },
+  {
+    "id": 5,
+    "name": "快手招聘-日常实习",
+    "url": "https://zhaopin.kuaishou.cn/recruit/e/#/official/trainee/?workLocationCode=domestic&pageNum=1&positionCategoryCode=J0012"
+  },
+  {
+    "id": 6,
+    "name": "腾讯校招",
+    "url": "https://join.qq.com/post.html?query=p_2"
+  },
+  {
+    "id": 7,
+    "name": "阿里巴巴校园招聘",
+    "url": "https://campus-talent.alibaba.com/campus/position?campusShareCode=TvGu%2FjI10LSv6tGNgZyjTait8YE_avInOkJQ7eij8jw%3D&batchId=100000540002"
+  },
+  {
+    "id": 8,
+    "name": "哔哩哔哩招聘",
+    "url": "https://jobs.bilibili.com/campus/positions?type=0"
+  },
+  {
+    "id": 9,
+    "name": "携程集团校园招聘",
+    "url": "https://campus.ctrip.com/#/jobs?keyword=&page=1&anchorName=jobsList"
+  },
+  {
+    "id": 10,
+    "name": "同程旅行校园招聘",
+    "url": "https://mhr.ly.com/recruit/schoolPortal/#/postDelivery?srt=0.9313838574194698"
+  },
+  {
+    "id": 11,
+    "name": "小红书校园招聘",
+    "url": "https://job.xiaohongshu.com/campus/position?campusRecruitTypes=term_intern%2Cterm_regular&positionName=java"
+  },
+  {
+    "id": 12,
+    "name": "滴滴校园招聘",
+    "url": "https://campus.didiglobal.com/campus_apply/didiglobal/96064#/jobs?project%5B0%5D=100107161&page=1&anchorName=jobsList"
+  },
+  {
+    "id": 13,
+    "name": "拼多多校园招聘",
+    "url": "https://careers.pddglobalhr.com/campus/intern"
+  },
+  {
+    "id": 14,
+    "name": "腾讯音乐娱乐招聘",
+    "url": "https://join.tencentmusic.com/campus/post-details/?id=12186&refer_code"
+  },
+  {
+    "id": 15,
+    "name": "阅文集团实习招聘",
+    "url": "https://join.yuewen.com/fieldwork"
+  },
+  {
+    "id": 16,
+    "name": "SHEIN招聘",
+    "url": "https://careers.shein.cn/All-Jobs?key=-%E6%9A%91%E6%9C%9F%E5%AE%9E%E4%B9%A0"
+  },
+  {
+    "id": 17,
+    "name": "唯品会校园招聘",
+    "url": "https://app-tc.mokahr.com/campus-recruitment/vipshophr/10039?sourceToken=d7b00ea2471aaddd55b3f402bb4fcc19&previewKey=5a77f111a2994afc9669a3d68a8d050f139d9b6d4aa142029d3a9f20a6eba005#/jobs"
+  },
+  {
+    "id": 18,
+    "name": "OPPO招聘",
+    "url": "https://careers.oppo.com/university/oppo/campus/post?recruitType=Intern"
+  },
+  {
+    "id": 19,
+    "name": "vivo招聘",
+    "url": "https://hr-campus.vivo.com/"
+  },
+  {
+    "id": 20,
+    "name": "小米实习生招聘",
+    "url": "https://xiaomi.jobs.f.mioffice.cn/internship/?keywords=&category=&location=&project=&type=&job_hot_flag=&current=1&limit=10&functionCategory=7178759516879405165&tag=&spread=6AA3R7B"
+  },
+  {
+    "id": 21,
+    "name": "米哈游校招职位",
+    "url": "https://jobs.mihoyo.com/?isRecommendation=true&recommendationCode=9SLMR#/campus/position?jobName=&competencyTypes%5B0%5D=1&projectIds%5B0%5D=4"
+  },
+  {
+    "id": 22,
+    "name": "蚂蚁集团招聘",
+    "url": "https://talent.antgroup.com/campus-full-list?type=campus_intern&batchId=26022600074513"
+  },
+  {
+    "id": 23,
+    "name": "同花顺招聘",
+    "url": "https://campus.10jqka.com.cn/job/list?type=school"
+  },
+  {
+    "id": 24,
+    "name": "科大讯飞实习生招聘",
+    "url": "https://iflytek.zhiye.com/intern/jobs"
+  },
+  {
+    "id": 25,
+    "name": "联想招聘岗位",
+    "url": "https://talent.lenovo.com.cn/position?projectType=2"
+  },
+  {
+    "id": 26,
+    "name": "360招聘职位",
+    "url": "https://360campus.zhiye.com/jobs"
+  },
+  {
+    "id": 27,
+    "name": "吉比特&雷霆游戏校园招聘",
+    "url": "https://hr.g-bits.com/web/index.html#/post-web/post-list/"
+  },
+  {
+    "id": 28,
+    "name": "三七互娱校园招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/37/58016?locale=zh-CN#/"
+  },
+  {
+    "id": 29,
+    "name": "中兴通讯校园招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/zte/46903#/"
+  },
+  {
+    "id": 30,
+    "name": "莉莉丝校园招聘",
+    "url": "https://lilithgames.jobs.feishu.cn/intern/?keywords=&category=&location=&project=&type=&job_hot_flag=&current=1&limit=10&functionCategory=7233693414860278055%2C7233694862792067366%2C7233693412515547431%2C7519774565187635506%2C7234042888760625447&tag="
+  },
+  {
+    "id": 31,
+    "name": "拓竹科技招聘",
+    "url": "https://bambulab.jobs.feishu.cn/campus/?keywords=&category=&location=&project=7597705346824833307%2C7289362851880716605&type=&job_hot_flag=&current=1&limit=10&functionCategory=7138725270605170975%2C7138725196274583844%2C7138725297297361159%2C7138724994615560484%2C7138725206210332959%2C7212837714767989024%2C7138725270605400351%2C7138741097693448479&tag="
+  },
+  {
+    "id": 32,
+    "name": "深蓝互动校园招聘",
+    "url": "https://campus.bluepoch.com/campus_apply/blueinteractive/38434/#/jobs?zhineng=68719"
+  },
+  {
+    "id": 33,
+    "name": "哈啰招聘",
+    "url": "https://careers.hellobike.com/#/recruit/%E5%AE%9E%E4%B9%A0%E7%94%9F%E6%8B%9B%E8%81%98"
+  },
+  {
+    "id": 34,
+    "name": "影石创新招聘",
+    "url": "https://arashivision.jobs.feishu.cn/campus/?keywords=&category=&location=&project=7617750298077186345&type=&job_hot_flag=&current=1&limit=10&functionCategory=7560596841894299950%2C7560597090986395945&tag="
+  },
+  {
+    "id": 35,
+    "name": "贝壳找房职位列表",
+    "url": "https://campus.ke.com/campus/jobs"
+  },
+  {
+    "id": 36,
+    "name": "大疆校园招聘",
+    "url": "https://we.dji.com/zh-CN/campus/position?from=home_page&page=1&project=intern&category=1_101_102_103_104_105_106_107_108_109_110_111_112_113_114_115_116_117"
+  },
+  {
+    "id": 37,
+    "name": "巨人网络校园招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/ztgame/92438#/jobs?page=1&anchorName=jobsList&commitment%5B0%5D=%E5%AE%9E%E4%B9%A0&keyword=&zhineng%5B0%5D=74578"
+  },
+  {
+    "id": 38,
+    "name": "寒武纪校园招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/cambricon/44201#/jobs?project=100104477"
+  },
+  {
+    "id": 39,
+    "name": "得物App校园招聘",
+    "url": "https://campus.dewu.com/578078"
+  },
+  {
+    "id": 40,
+    "name": "顺丰校园招聘",
+    "url": "https://campus.sf-express.com/#/homePage"
+  },
+  {
+    "id": 41,
+    "name": "极兔速递校园招聘",
+    "url": "https://jtexpress.jobs.feishu.cn/478610/position/list?functionCategory=7384318307388115239&spread=RK6HVPP"
+  },
+  {
+    "id": 42,
+    "name": "叠纸游戏校园招聘",
+    "url": "https://career.papegames.com/campus/?keywords=&category=&location=&project=&type=&job_hot_flag=&current=2&limit=10&functionCategory=&tag="
+  },
+  {
+    "id": 43,
+    "name": "沐瞳科技招聘",
+    "url": "https://moonton.jobs.feishu.cn/campus/position/list?keywords=&category=&location=&project=&type=&job_hot_flag=&current=1&limit=10&functionCategory=7259639754717677882%2C7259640251407305016&tag="
+  },
+  {
+    "id": 44,
+    "name": "金山办公软件校园招聘",
+    "url": "https://join.wps.cn/campus-recruitment/wps/41436?sourceToken=8379ee777457c4d22fc65d4439f660b3#/"
+  },
+  {
+    "id": 45,
+    "name": "海康威视校园招聘",
+    "url": "https://campushr.hikvision.com/home"
+  },
+  {
+    "id": 46,
+    "name": "微众银行校园招聘",
+    "url": "https://app-tc.mokahr.com/campus-recruitment/webankhr/20060?locale=zh-CN#/"
+  },
+  {
+    "id": 47,
+    "name": "招银网络科技校园招聘",
+    "url": "https://cmbntjob.cmbchina.com/pages/schoolRecruit/index.html"
+  },
+  {
+    "id": 48,
+    "name": "游卡校园招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/yokagames/41940#/jobs"
+  },
+  {
+    "id": 49,
+    "name": "富途校园招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/futu5/141186?locale=zh-CN#/"
+  },
+  {
+    "id": 50,
+    "name": "吉利控股集团校园招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/geely/78436?sourceToken=ecae7ec7995c67a4c8b68f4c11dffb7c&locale=zh-CN#/"
+  },
+  {
+    "id": 51,
+    "name": "度小满校园招聘",
+    "url": "https://duxiaoman.jobs.feishu.cn/051736/position/list?spread=XERZ1RC"
+  },
+  {
+    "id": 52,
+    "name": "蔚来校招",
+    "url": "https://nio.jobs.feishu.cn/campus/?keywords=&category=&location=&project=7620271579972569394&type=&job_hot_flag=&current=1&limit=10&functionCategory=7257443883901208891%2C7257443555114207549&tag=&spread=NDBZ74M"
+  },
+  {
+    "id": 53,
+    "name": "海能达校园招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/hytera/167908?locale=zh-CN#/jobs"
+  },
+  {
+    "id": 54,
+    "name": "文远知行WeRide校园招聘",
+    "url": "https://app.mokahr.com/campus_apply/jingchi/2137#/jobs"
+  },
+  {
+    "id": 55,
+    "name": "中国平安校园招聘",
+    "url": "https://campus.pingan.com/pab/position"
+  },
+  {
+    "id": 56,
+    "name": "深信服校园招聘",
+    "url": "https://app.mokahr.com/campus_apply/sangfor/6146#/"
+  },
+  {
+    "id": 57,
+    "name": "安克创新校园招聘",
+    "url": "https://career.anker.com.cn/universities/recruitment/new/?channel=internship"
+  },
+  {
+    "id": 58,
+    "name": "金山软件校园招聘",
+    "url": "https://jssoft.zhiye.com/campus/jobs?queryId=fef0e7ef-1eca-4d57-a63b-275accd7bf7b"
+  },
+  {
+    "id": 59,
+    "name": "锐捷网络校园招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/ruijie/136206?locale=zh-CN#/jobs"
+  },
+  {
+    "id": 60,
+    "name": "Amazon Jobs for Grads",
+    "url": "https://amazon.jobs/content/zh/career-programs/university/jobs-for-grads?country%5B%5D=CN"
+  },
+  {
+    "id": 61,
+    "name": "Electronic Arts工作搜索",
+    "url": "https://jobs.ea.com/zh_CN/careers"
+  },
+  {
+    "id": 62,
+    "name": "华泰证券校园招聘",
+    "url": "https://wecruit.hotjob.cn/SU6419745cbef57c635fe10142/pb/school.html"
+  },
+  {
+    "id": 63,
+    "name": "4399游戏校园招聘",
+    "url": "https://hr.4399om.com/campus/"
+  },
+  {
+    "id": 64,
+    "name": "神州数码实习生招聘",
+    "url": "https://digitalchina.zhiye.com/intern/jobs"
+  },
+  {
+    "id": 65,
+    "name": "库洛游戏校园招聘",
+    "url": "https://kurogame.jobs.feishu.cn/campus/position/list?keywords=&category=&location=&project=7605880646154488070&type=&job_hot_flag=&current=1&limit=10&functionCategory=7456714567507790107&tag=&storefront_id_list="
+  },
+  {
+    "id": 66,
+    "name": "途游游戏校园招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/tuyoogame/146219#/jobs?zhineng%5B0%5D=113398"
+  },
+  {
+    "id": 67,
+    "name": "韶音科技校园招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/aftershokzhr/36940#/jobs?page=1&anchorName=jobsList&commitment%5B0%5D=%E5%AE%9E%E4%B9%A0&zhineng%5B0%5D=65956&zhineng%5B1%5D=71586"
+  },
+  {
+    "id": 68,
+    "name": "涂鸦智能校园招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/tuya/147434?sourceToken=c722929049ba879b8e0d4bf8bc4e1769#/jobs?zhineng%5B0%5D=208985"
+  },
+  {
+    "id": 69,
+    "name": "柠檬微趣校园招聘",
+    "url": "https://app.mokahr.com/apply/microfunhr/75944?sourceToken=e0f0242bf8ee47afc741c37f136a6664#/jobs?page=1&anchorName=jobsList&zhineng%5B0%5D=78383&zhineng%5B1%5D=69012&zhineng%5B2%5D=69016&zhineng%5B3%5D=170493&commitment%5B0%5D=%E5%AE%9E%E4%B9%A0"
+  },
+  {
+    "id": 70,
+    "name": "作业帮校园招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/zuoyebang/39595?locale=zh-CN#/jobs?commitment%5B0%5D=%E5%AE%9E%E4%B9%A0&page=1&anchorName=jobsList"
+  },
+  {
+    "id": 71,
+    "name": "MetaApp招聘",
+    "url": "https://meta.jobs.feishu.cn/140297/position/list?keywords=java&category=&location=&project=&type=&job_hot_flag=&current=2&limit=10&functionCategory=&tag="
+  },
+  {
+    "id": 72,
+    "name": "点点互动招聘",
+    "url": "https://ddhd.cn/campus/jobs?queryId=ca4e0a8d-c1bd-4f47-a4b6-b3e00089a7ee"
+  },
+  {
+    "id": 73,
+    "name": "BOSS直聘校园招聘",
+    "url": "https://www.zhipin.com/campus/pc/job"
+  },
+  {
+    "id": 74,
+    "name": "长鑫存储实习生招聘",
+    "url": "https://cxmt.zhiye.com/intern/jobs"
+  },
+  {
+    "id": 75,
+    "name": "宇树科技招贤纳士",
+    "url": "https://www.unitree.com/cn/position"
+  },
+  {
+    "id": 76,
+    "name": "中国三星校园招聘",
+    "url": "https://dearsamsung.zhiye.com/#/samsung/pc/campus/xzlb"
+  },
+  {
+    "id": 77,
+    "name": "Shopee校园招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/shopee/2962?sourceToken=4144ac8d55ba6da0b7802b5137ec701e#/jobs"
+  },
+  {
+    "id": 78,
+    "name": "特斯拉中国校园招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/tesla/41460#/jobs?212548%5B0%5D=1690341912925&212548%5B1%5D=1690341920014&212548%5B2%5D=1690341924295&212548%5B3%5D=1690341928572&212548%5B4%5D=1690341935018&212548%5B5%5D=1690341940247&212548%5B6%5D=1690341946148&212548%5B7%5D=1690341951146&212548%5B8%5D=1690341955026&212548%5B9%5D=1690341958347&project%5B0%5D=100104325&page=1&anchorName=jobsList"
+  },
+  {
+    "id": 79,
+    "name": "Momenta招聘",
+    "url": "https://momenta.jobs.feishu.cn/intern/?keywords=&category=6791702736615426317&location=&project=&type=&job_hot_flag=&current=1&limit=10&functionCategory=&tag="
+  },
+  {
+    "id": 80,
+    "name": "商汤科技简历投递",
+    "url": "https://www.sensetime.com/cn/join-us"
+  },
+  {
+    "id": 81,
+    "name": "恺英网络校园招聘",
+    "url": "https://app.mokahr.com/campus_apply/kingnet/2246#/?_k=2nh8ly"
+  },
+  {
+    "id": 82,
+    "name": "去哪儿旅行校园招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/qunar/37595#/"
+  },
+  {
+    "id": 83,
+    "name": "喜马拉雅实习生职位",
+    "url": "https://jobs.ximalaya.com/intern/jobs?1=%5B%7B%22id%22%3A%221%22%2C%22label%22%3A%22%E5%BC%80%E5%8F%91%E7%B1%BB%22%7D%5D"
+  },
+  {
+    "id": 84,
+    "name": "猿辅导集团校园招聘",
+    "url": "https://hr.yuanfudao.com/#/"
+  },
+  {
+    "id": 85,
+    "name": "搜狐招聘官网",
+    "url": "https://hr.sohu.com/social-recruitment/sohu/43256#/"
+  },
+  {
+    "id": 86,
+    "name": "新浪集团校园招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/sina/43536#/jobs?page=1&anchorName=jobsList&project%5B0%5D=100098744"
+  },
+  {
+    "id": 87,
+    "name": "美图公司招聘",
+    "url": "https://hr.meitu.com/"
+  },
+  {
+    "id": 88,
+    "name": "东方财富校园招聘",
+    "url": "https://zhaopin.eastmoney.com/campus-recruitment/eastmoney/92400#/page/%E6%A0%A1%E5%9B%AD%E6%8B%9B%E8%81%98"
+  },
+  {
+    "id": 89,
+    "name": "荣耀招聘官网",
+    "url": "https://career.honor.com/SU61b9b9992f9d24431f5050a5/pb/interns.html?postTypeCode=0%2F1227%2F10002&currentPage=1"
+  },
+  {
+    "id": 90,
+    "name": "智谱AI校招官网",
+    "url": "https://zhipu-ai.jobs.feishu.cn/zhipucampus/position/list?keywords=&category=6791702736615426317&location=&project=&type=&job_hot_flag=&current=1&limit=10&functionCategory=&tag="
+  },
+  {
+    "id": 91,
+    "name": "MiniMax校招",
+    "url": "https://vrfi1sk8a0.jobs.feishu.cn/index/?keywords=&category=6791702736615426317&location=&project=&type=&job_hot_flag=&current=1&limit=10&functionCategory=&tag="
+  },
+  {
+    "id": 92,
+    "name": "鹰角网络校园招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/hypergryph/26326#/jobs?page=1&anchorName=jobsList&commitment%5B0%5D=%E5%AE%9E%E4%B9%A0&keyword=&zhineng%5B0%5D=72529&zhineng%5B1%5D=199632"
+  },
+  {
+    "id": 93,
+    "name": "腾讯云智校园招聘",
+    "url": "https://app-tc.mokahr.com/campus-recruitment/csig/20001#/jobs?commitment=%E5%AE%9E%E4%B9%A0&zhineng%5B0%5D=10020"
+  },
+  {
+    "id": 94,
+    "name": "货拉拉校园招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/huolalahr/98660#/jobs?zhineng%5B0%5D=63523&page=1&anchorName=jobsList"
+  },
+  {
+    "id": 95,
+    "name": "满帮集团校园招聘",
+    "url": "https://jobs.fulltruckalliance.com/social-recruitment/manbang/96016/#/"
+  },
+  {
+    "id": 96,
+    "name": "迅雷校招",
+    "url": "https://campus.xunlei.com/campus_apply/xunlei/26600/#/jobs?zhineng%5B0%5D=49200&page=1&anchorName=jobsList"
+  },
+  {
+    "id": 97,
+    "name": "心动招聘",
+    "url": "https://hr.xd.cn/campus-recruitment/xd/99361#/"
+  },
+  {
+    "id": 98,
+    "name": "完美世界校园招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/pwrd/150080#/jobs?&zhineng%5B0%5D=82130&zhineng%5B1%5D=152783"
+  },
+  {
+    "id": 99,
+    "name": "FunPlus招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/funplus01/147931#/jobs?276338%5B0%5D=%E8%BD%AC%E6%AD%A3%E5%AE%9E%E4%B9%A0&276338%5B1%5D=%E6%97%A5%E5%B8%B8%E5%AE%9E%E4%B9%A0&commitment%5B0%5D=%E5%AE%9E%E4%B9%A0&commitment%5B1%5D=%E5%85%A8%E8%81%8C&commitment%5B2%5D=%E5%85%B6%E5%AE%83&page=1&anchorName=jobsList&zhineng%5B0%5D=45509"
+  },
+  {
+    "id": 100,
+    "name": "盛趣游戏",
+    "url": "https://app.mokahr.com/campus_apply/shengqu/4078#/jobs/?keyword=%E5%AE%9E%E4%B9%A0&zhineng=15098&page=1"
+  },
+  {
+    "id": 101,
+    "name": "海彼游戏招聘",
+    "url": "https://www.habby.com/career"
+  },
+  {
+    "id": 102,
+    "name": "中国银联实习生招聘",
+    "url": "https://join.unionpay.com/SU6551ec6e4c45f74c9a423549/pb/interns.html"
+  },
+  {
+    "id": 103,
+    "name": "民生银行-实习生招聘",
+    "url": "https://career.cmbc.com.cn/#/app/recruitmentlist/trainee"
+  },
+  {
+    "id": 104,
+    "name": "卓驭实习生招聘",
+    "url": "https://we.zyt.com/intern/jobs"
+  },
+  {
+    "id": 105,
+    "name": "中国人寿实习生招聘",
+    "url": "https://chinalife.zhiye.com/custom/intern?hideMenu=1"
+  },
+  {
+    "id": 106,
+    "name": "Soul招聘",
+    "url": "https://soulapp.jobs.feishu.cn/index/?keywords=&category=6791702736615426317&location=&project=&type=&job_hot_flag=&current=1&limit=10&functionCategory=&tag="
+  },
+  {
+    "id": 107,
+    "name": "知乎-校园招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/zhihu/68321#/jobs?38796%5B0%5D=%E6%8A%80%E6%9C%AF%E7%B1%BB&page=1&anchorName=jobsList"
+  },
+  {
+    "id": 108,
+    "name": "爱奇艺-招聘",
+    "url": "https://careers.iqiyi.com/intern/?keywords=&category=&location=&project=&type=&job_hot_flag=&current=1&limit=10&functionCategory=7434839649275742501%2C7434839421294070035%2C7434839934659873034%2C7434840202054584586&tag="
+  },
+  {
+    "id": 109,
+    "name": "瑞幸咖啡-招聘",
+    "url": "https://lkcoffee.joinus.cc/campus-recruitment/lkcoffee/45257?sourceToken=62d47e411f9ada5b1bccd95c3ba0e0c4#/jobs?page=1&anchorName=jobsList"
+  },
+  {
+    "id": 110,
+    "name": "宁德时代-校园招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/catlhr/148948#/jobs?zhineng%5B0%5D=204364"
+  },
+  {
+    "id": 111,
+    "name": "懂车帝-招聘",
+    "url": "https://dcar.jobs.feishu.cn/campus/position/list?keywords=&category=6791702736615426317&location=&project=7621827686797855003&type=&job_hot_flag=&current=1&limit=10&functionCategory=&tag="
+  },
+  {
+    "id": 112,
+    "name": "转转招聘",
+    "url": "https://zhuanzhuan.zhiye.com/intern/jobs"
+  },
+  {
+    "id": 113,
+    "name": "好未来-招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/tal/95443?locale=zh-CN#/jobs?zhineng%5B0%5D=168001&zhineng%5B1%5D=160617&zhineng%5B2%5D=152237&zhineng%5B3%5D=150151&zhineng%5B4%5D=168002&zhineng%5B5%5D=179454&zhineng%5B6%5D=150152&zhineng%5B7%5D=170040&page=1&anchorName=jobsList"
+  },
+  {
+    "id": 114,
+    "name": "小马智行-校园招聘",
+    "url": "https://ponyai.jobs.feishu.cn/ponycampus/?keywords=&category=&location=&project=&type=&job_hot_flag=&current=1&limit=10&functionCategory=&tag="
+  },
+  {
+    "id": 115,
+    "name": "地平线招聘",
+    "url": "https://wecruit.hotjob.cn/SU6409ef49bef57c635fd390a6/pb/interns.html?postTypeCode=0%2F1227%2F100702%2F100603"
+  },
+  {
+    "id": 116,
+    "name": "欢聚招聘",
+    "url": "https://hr.joyy.com/apply/hjsd/48#/jobs?_k=i3ov2o&zhineng=5982&page=1&commitment="
+  },
+  {
+    "id": 117,
+    "name": "虎牙直播-校园招聘",
+    "url": "https://app.mokahr.com/campus_apply/huya/4112#/jobs?zhineng=15181"
+  },
+  {
+    "id": 118,
+    "name": "汽车之家招聘",
+    "url": "https://talent.autohome.com.cn/campus-recruit-list.html"
+  },
+  {
+    "id": 119,
+    "name": "搜狐畅游招聘",
+    "url": "https://app.mokahr.com/campus-recruitment/cyou-inc/42233#/jobs?page=1&anchorName=jobsList&zhineng%5B0%5D=85717&zhineng%5B1%5D=76131&project%5B0%5D=100120066&project%5B1%5D=100100744"
+  },
+  {
+    "id": 120,
+    "name": "帆软招聘",
+    "url": "https://join.fanruan.com/trainee"
+  },
+  {
+    "id": 121,
+    "name": "追觅招聘",
+    "url": "https://dreame.zhiye.com/campus/jobs"
+  },
+  {
+    "id": 122,
+    "name": "小鹏汽车-校园招聘",
+    "url": "https://xiaopeng.jobs.feishu.cn/398875/?keywords=&category=&location=&project=&type=&job_hot_flag=&current=1&limit=10&functionCategory=&tag="
+  },
+  {
+    "id": 123,
+    "name": "理想汽车-校园招聘",
+    "url": "https://www.lixiang.com/employ/campus/list.html?fromJob=1"
+  },
+  {
+    "id": 124,
+    "name": "微派网络招聘",
+    "url": "https://wepie.jobs.feishu.cn/359597/position/list?keywords=&category=&location=&project=&type=&job_hot_flag=&current=1&limit=10&functionCategory=7317250877512681747&tag=7330471898482657563%2C7618891991220734259"
+  },
+  {
+    "id": 125,
+    "name": "安奇信-校园招聘",
+    "url": "https://campus.qianxin.com/campus/jobSearch"
+  },
+  {
+    "id": 126,
+    "name": "道旅招聘",
+    "url": "https://didatravel.jobs.feishu.cn/campus/position/list?keywords=&category=6791702736615426317&location=&project=&type=&job_hot_flag=&current=1&limit=10&functionCategory=&tag="
+  },
+  {
+    "id": 127,
+    "name": "挚文集团招聘",
+    "url": "https://campus.hellogroup.com/campus-recruitment/immomo/54299/#/jobs/?page=1&anchorName=jobsList"
+  },
+  {
+    "id": 128,
+    "name": "58同城",
+    "url": "https://campus.58.com/campus-recruitment/58/150953/#/jobs"
+  }
+]
