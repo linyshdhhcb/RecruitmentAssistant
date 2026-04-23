@@ -6,8 +6,8 @@
 
 ### Windows 用户（推荐）
 
-1. 访问 [GitHub Releases](https://github.com/linyshdhhcb/RecruitmentAssistant/releases/tag/v1.0.0)
-2. 下载 `RecruitmentAssistant-v1.0.0-win-x64.zip`
+1. 访问 [GitHub Releases](https://github.com/linyshdhhcb/RecruitmentAssistant/releases/tag/v1.0.1)
+2. 下载 `RecruitmentAssistant-v1.0.1-win-x64.zip`
 3. 解压到任意目录
 4. 运行 `RecruitmentAssistant.exe`
 
