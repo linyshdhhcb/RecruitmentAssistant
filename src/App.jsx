@@ -47,6 +47,20 @@ function App() {
   });
   const draggingNavRef = useRef(false);
   const navDragOffsetRef = useRef({ x: 0, y: 0 });
+  const siteListRef = useRef(null);
+  const sidebarRef = useRef(null);
+  const navOpenPrevRef = useRef(false);
+
+  function centerActiveSiteInNav(behavior = "smooth") {
+    if (!selectedOne?.id) return;
+    const listEl = siteListRef.current;
+    if (!listEl) return;
+    const activeEl = listEl.querySelector(`[data-site-id="${selectedOne.id}"]`);
+    if (!activeEl) return;
+    const targetTop = activeEl.offsetTop - (listEl.clientHeight - activeEl.offsetHeight) / 2;
+    const maxTop = Math.max(0, listEl.scrollHeight - listEl.clientHeight);
+    listEl.scrollTo({ top: Math.max(0, Math.min(targetTop, maxTop)), behavior });
+  }
 
   const enabledSites = useMemo(() => websites.filter((site) => site.is_enabled === 1), [websites]);
   const navSites = useMemo(() => {
@@ -254,6 +268,25 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    const justOpened = navOpen && !navOpenPrevRef.current;
+    navOpenPrevRef.current = navOpen;
+    if (!justOpened) return;
+
+    const raf1 = requestAnimationFrame(() => centerActiveSiteInNav("smooth"));
+    const onTransitionEnd = (event) => {
+      if (event.propertyName !== "width") return;
+      centerActiveSiteInNav("smooth");
+    };
+    sidebarRef.current?.addEventListener("transitionend", onTransitionEnd);
+    const timer = window.setTimeout(() => centerActiveSiteInNav("smooth"), 220);
+    return () => {
+      cancelAnimationFrame(raf1);
+      sidebarRef.current?.removeEventListener("transitionend", onTransitionEnd);
+      window.clearTimeout(timer);
+    };
+  }, [navOpen, selectedOne?.id]);
+
   return (
     <div className="app">
       <header className="topbar">
@@ -271,6 +304,7 @@ function App() {
       {activePage === "viewer" ? (
         <div className="viewer-layout">
           <aside
+            ref={sidebarRef}
             className={`sidebar floating ${navOpen ? "open" : "closed"} ${!navHover && !navOpen ? "inactive" : ""}`}
             style={{ left: navPos.x, top: navPos.y }}
             onMouseEnter={() => setNavHover(true)}
@@ -295,13 +329,14 @@ function App() {
                   onChange={(event) => setSiteSearch(event.target.value)}
                   placeholder="搜索招聘网站"
                 />
-                <div className="site-list">
+                <div ref={siteListRef} className="site-list">
                   {groupedNavSites.map(([groupName, list]) => (
                     <div key={groupName} className="site-group">
                       <div className="group-title">{groupName}</div>
                       {list.map((site) => (
                         <button
                           key={site.id}
+                          data-site-id={site.id}
                           className={site.id === selectedOne?.id ? "site-item active" : "site-item"}
                           onClick={() => setSelectedOneId(site.id)}
                         >
